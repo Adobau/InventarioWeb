@@ -9,8 +9,8 @@ public class Prueba {
     public static void main(String[] args) {
         
         Prueba evaluar = new Prueba();
-        evaluar.listarCategorias();
-     
+        //evaluar.listarCategorias();
+          evaluar.editarCategoria();
     }
     
     
@@ -24,5 +24,15 @@ public class Prueba {
                             " ESTADO: " +categoriaListar.getEstado_categoria());
         }
     }
+        public void editarCategoria(){
+        CategoriaDAO categoria = new CategoriaDAOImplementar();
+        Categoria cat_edit = categoria.editarCat(1); //Se pasa el valor id_categoria =1
+        System.out.println("CATEGORIA MODIFICAR");
+        System.out.println("ID: "+ cat_edit.getId_categoria()+
+                            " NOMBRE: " + cat_edit.getNom_categoria()+
+                            " ESTADO: " + cat_edit.getEstado_categoria());
+    }
+    
+    
 }
     
