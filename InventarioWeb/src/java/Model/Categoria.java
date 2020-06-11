@@ -8,7 +8,7 @@ public class Categoria {
     public Categoria() {
          this.id_categoria = 0;
         this.nom_categoria = "";
-        this.estado_categoria = 1; // que el 1 será activo y el 0 inactivo
+        this.estado_categoria = 1; //  1 será activo y el 0 inactivo
     }
 
     public Categoria(int id_categoria, String nom_categoria, int estado_categoria) {

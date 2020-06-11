@@ -46,7 +46,7 @@ public boolean cerrarConexion(){
 boolean ok = true;
 try{
     conexion.close();
-}catch(Exception ex){
+}catch(SQLException ex){
 ok = false;
 ex.printStackTrace();
 }

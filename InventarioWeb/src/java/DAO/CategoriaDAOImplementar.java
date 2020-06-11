@@ -1,6 +1,5 @@
 package DAO;
 import Model.Categoria;
-import java.util.List;
 import Factory.ConexionBD;
 import Factory.FactoryConexionBD;
 import java.sql.ResultSet;
@@ -19,7 +18,7 @@ public class CategoriaDAOImplementar implements CategoriaDAO {
     @Override
     public List<Categoria> Listar() { 
         StringBuilder miSQL = new StringBuilder();//Construir la consulta
-        miSQL.append("SELECT * FROM tb_categorias;");//agregar la consulta
+        miSQL.append(" SELECT * FROM tb_categoria; ");//agregar la consulta
         List<Categoria> lista = new ArrayList<Categoria>();
         try{
             //SE crea el metodo ResultSet implementando el metodo (consultaSQL) creado para consulta
