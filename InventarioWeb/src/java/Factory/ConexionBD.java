@@ -15,7 +15,7 @@ public abstract class ConexionBD {
 
 
 //Crear método para las consultas
-public ResultSet cosultaSQL(String consulta){
+public ResultSet consultaSQL(String consulta){
 Statement st; //Objeto Statement en el encargado de ejecutar las consultas
 ResultSet rs = null; //Tabla temporal donde se almacenan los datos
 try{
@@ -25,5 +25,31 @@ try{
       ex.printStackTrace();
 }
 return rs;
+}
+
+//Crear método para ejecutar
+public boolean ejecutarSQL(String consulta){
+Statement st; //Objeto Statement en el encargado de ejecutar las consultas
+boolean guardar = true;
+try{
+    st = conexion.createStatement();
+    st.executeUpdate(consulta); //Se ejecuta la consulta
+}catch(SQLException ex){
+guardar = false;
+ ex.printStackTrace();
+}
+return guardar;
+}
+
+//Método para cerrar la conexión
+public boolean cerrarConexion(){
+boolean ok = true;
+try{
+    conexion.close();
+}catch(Exception ex){
+ok = false;
+ex.printStackTrace();
+}
+return ok;
 }
 }
