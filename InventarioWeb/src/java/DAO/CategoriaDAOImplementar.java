@@ -103,7 +103,19 @@ public class CategoriaDAOImplementar implements CategoriaDAO {
     }
     @Override
     public boolean borrarCat(int id_cat_borrar) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       this.conn = FactoryConexionBD.open(FactoryConexionBD.MySQL); //Hacer la conexion
+    boolean borra = false; //Bandera de resultado
+    try{
+        StringBuilder  miSQL = new StringBuilder();
+        miSQL.append("DELETE FROM tb_categoria WHERE id_categoria = "). append(id_cat_borrar);
+        this.conn.ejecutarSQL(miSQL.toString());
+        borra = true;
+    }catch (Exception e){
+        
+    }finally{
+        this.conn.cerrarConexion();   //Cerrar conexión
+    }
+    return borra;
     }
     
 }

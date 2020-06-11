@@ -9,8 +9,10 @@ public class Prueba {
     public static void main(String[] args) {
         
         Prueba evaluar = new Prueba();
-        evaluar.guardaCategoria();
-       evaluar.listarCategorias();
+        //evaluar.guardaCategoria(); //Método guardar
+        evaluar.listarCategorias(); //Método listar, antes de eliminar
+        evaluar.eliminarCategoria(); //Método que eliminará la categoria indicada
+       evaluar.listarCategorias(); //Consultar si ha sido eliminada la categoria
           //evaluar.editarCategoria();
     }
     
@@ -42,6 +44,9 @@ public class Prueba {
         categoria.guardarCat(guarda_cat); 
     }
     
-    
+     public void eliminarCategoria(){
+        CategoriaDAO categoria = new CategoriaDAOImplementar();
+        categoria.borrarCat(2); //S e eliminará la categoria con id_categoria = 2
+    }
 }
     
