@@ -36,8 +36,9 @@ public class Prueba {
          public void guardaCategoria(){
         CategoriaDAO categoria = new CategoriaDAOImplementar();
         Categoria guarda_cat = new Categoria();
-        guarda_cat.setNom_categoria("Bebidas");//Nueva Categoria guardada
-        guarda_cat.setEstado_categoria(1);//estado 1
+        guarda_cat.setNom_categoria("Bebidas Naturales"); //Cambiar Nombre
+        guarda_cat.setId_categoria(5); //Modificar la categoria registrada anteriormente
+        guarda_cat.setEstado_categoria(1); //Estado 1
         categoria.guardarCat(guarda_cat); 
     }
     
