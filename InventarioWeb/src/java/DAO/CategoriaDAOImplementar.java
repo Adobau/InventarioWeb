@@ -74,9 +74,25 @@ public class CategoriaDAOImplementar implements CategoriaDAO {
 
     @Override
     public boolean guardarCat(Categoria categoria) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+         this.conn = FactoryConexionBD.open(FactoryConexionBD.MySQL); //Hacer la conexión
+      boolean guarda = false;//bandera de reaultado
+        try{
+            if(categoria.getId_categoria() == 0) { //Para cuando es una nueva categoria
+                StringBuilder miSQL = new StringBuilder();
+                //Agregar consulta sql; el id categoria es autoincrement
+                miSQL.append("INSERT INTO tb_categoria(nom_categoria, estado_categoria) VALUES('");
+                miSQL.append(categoria.getNom_categoria() + "', ").append(categoria.getEstado_categoria());
+                miSQL.append(");");
+                //Invocar el  metodo para ejecutar  la consulta
+                this.conn.ejecutarSQL(miSQL.toString());
+            }else if (categoria.getId_categoria() > 0){//Actualizar categorias mayores a 0
+            }
+        }catch (Exception e){   
+        }finally {
+            this.conn.cerrarConexion(); //Cerrar conexión
+        return guarda;
     }
-
+    }
     @Override
     public boolean borrarCat(int id_cat_borrar) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
