@@ -7,6 +7,7 @@ package Controller;
 
 import DAO.CategoriaDAO;
 import DAO.CategoriaDAOImplementar;
+import Model.Categoria;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -74,9 +75,17 @@ public class Categorias extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        this.listaCategorias(request, response);
+       String parametro = request.getParameter("opcion"); //Capturar el parámetro que se esta enviando
+        if(parametro.equals("crear")){ // Evaluar si el parámetro es crear o listar o cualquier otro
+            String pagina = "/Vistas-Categorias/crearCategoria.jsp"; //Vista o formulario para registrar nueva categoria
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(pagina);
+            dispatcher.forward(request, response);
+        }
+        
+        else {
+            this.listaCategorias(request, response);
+        }
     }
-
     /**
      * Handles the HTTP <code>POST</code> method.
      *
@@ -88,7 +97,17 @@ public class Categorias extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+       
+        Categoria categoria = new Categoria ();
+        //se efectua el casting o conversion de datos porque lo ingresado en el formulario es texto
+        categoria.setId_categoria(Integer.parseInt(request.getParameter("id_categoria")));
+        categoria.setNom_categoria(request.getParameter("txtNomCategoria"));
+        categoria.setEstado_categoria(Integer.parseInt(request.getParameter("txtEstadoCategoria")));
+        
+        
+        CategoriaDAO guardaCategoria = new CategoriaDAOImplementar();
+        guardaCategoria.guardarCat(categoria);
+        this.listaCategorias(request, response);
     }
 
     /**
