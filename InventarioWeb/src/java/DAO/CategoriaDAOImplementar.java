@@ -12,11 +12,12 @@ public class CategoriaDAOImplementar implements CategoriaDAO {
 
     public CategoriaDAOImplementar() {
         //Definir a la base de datos que se conectará por defecto
-        this.conn = FactoryConexionBD.open(FactoryConexionBD.MySQL);
+        
     }
     
     @Override
     public List<Categoria> Listar() { 
+        this.conn = FactoryConexionBD.open(FactoryConexionBD.MySQL);
         StringBuilder miSQL = new StringBuilder();//Construir la consulta
         miSQL.append(" SELECT * FROM tb_categoria; ");//agregar la consulta
         List<Categoria> lista = new ArrayList<Categoria>();
